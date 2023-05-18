@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Data from "./components/Data";
+import React, { useState } from 'react'
+import Chat from "./components/Chat";
+import Header from "./components/Header";
+import { Route, Routes } from "react-router-dom";
+
+
 
 function App() {
+  const [idInstance, setIdInstance] = useState('')
+  const [apiTokenInstance, setApiTokenInstance] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Data idInstance={idInstance} setIdInstance={setIdInstance} apiTokenInstance={apiTokenInstance} setApiTokenInstance={setApiTokenInstance}  phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber}  />}/>
+        <Route path="chat" element={<Chat idInstance={idInstance} apiTokenInstance={apiTokenInstance} phoneNumber={phoneNumber} />} />
+      </Routes>
     </div>
-  );
+  )
+  
 }
 
 export default App;
